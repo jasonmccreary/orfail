@@ -1,0 +1,32 @@
+{
+    "name": "jasonmccreary/orfail",
+    "description": "The orFail Trait.",
+    "version": "1.0.0-dev",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jason McCreary",
+            "email": "jason@pureconcepts.net"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/jasonmccreary/orfail",
+        "issues": "https://github.com/jasonmccreary/orfail/issues"
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "OrFail\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/phpunit/"
+        }
+    }
+}
