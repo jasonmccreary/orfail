@@ -2,8 +2,10 @@
 
 use OrFail\Traits\OrFail;
 
-class InheritanceBase {
-    public function loopback($value) {
+class InheritanceBase
+{
+    public function loopback($value)
+    {
         return $value;
     }
 }

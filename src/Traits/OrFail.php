@@ -3,7 +3,8 @@
 use OrFail\Exceptions\FailingReturnValue;
 use OrFail\Exceptions\OrFailMethodNotAllowed;
 
-trait OrFail {
+trait OrFail
+{
     /**
      * Allows appending OrFail to existing, allowed methods and tests the return value.
      *
@@ -15,7 +16,8 @@ trait OrFail {
      * @throws OrException
      * @throws OrFailMethodNotAllowed
      */
-    public function __call($method, array $parameters) {
+    public function __call($method, array $parameters)
+    {
         $method = $this->normalizeMethodName($method);
 
         if (!$this->isMethodAllowed($method)) {
@@ -35,15 +37,18 @@ trait OrFail {
         return $return;
     }
 
-    protected function orFailTest($value) {
+    protected function orFailTest($value)
+    {
         return is_null($value);
     }
 
-    protected function allowedOrFailMethods() {
+    protected function allowedOrFailMethods()
+    {
         return [];
     }
 
-    private function normalizeMethodName($method) {
+    private function normalizeMethodName($method)
+    {
         if (substr($method, -6) == 'OrFail') {
             return substr($method, 0, -6);
         }
@@ -51,7 +56,8 @@ trait OrFail {
         return $method;
     }
 
-    private function isMethodAllowed($method) {
+    private function isMethodAllowed($method)
+    {
         $allowed_methods = $this->allowedOrFailMethods();
         if (empty($allowed_methods)) {
             return true;

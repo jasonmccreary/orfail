@@ -79,7 +79,8 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
         $mock->loopbackOrFail(false);
     }
 
-    public function testOrFailCallsInheritedMethod() {
+    public function testOrFailCallsInheritedMethod()
+    {
         $mock = new InheritanceMock();
 
         $this->assertTrue($mock->loopbackOrFail(true));

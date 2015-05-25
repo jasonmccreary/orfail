@@ -6,11 +6,13 @@ class OverrideMock
 {
     use OrFail;
 
-    protected function allowedOrFailMethods() {
+    protected function allowedOrFailMethods()
+    {
         return ['loopback'];
     }
 
-    protected function orFailTest($value) {
+    protected function orFailTest($value)
+    {
         return empty($value);
     }
 
