@@ -2,16 +2,16 @@
 
 use OrFail\Traits\OrFail;
 
-class InheritanceBase
+class MagicBase
 {
-    public function loopback($value)
+    public function __call($method, array $parameters)
     {
-        return $value;
+        return true;
     }
 }
 
 // @codingStandardsIgnoreStart
-class InheritanceMock extends InheritanceBase
+class MagicMock extends MagicBase
 {
     use OrFail;
 }

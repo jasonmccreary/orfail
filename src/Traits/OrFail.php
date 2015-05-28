@@ -24,11 +24,15 @@ trait OrFail
             throw new OrFailMethodNotAllowed($method . '() can not be called using OrFail');
         }
 
-        if (!method_exists($this, $method)) {
+        if (!method_exists($this, $method) && !is_callable(['parent', '__call'])) {
             throw new \BadMethodCallException($method . '() does not exist');
         }
 
-        $return = call_user_func_array([$this, $method], $parameters);
+        if (is_callable(['parent', '__call'])) {
+            $return = parent::__call($method, $parameters);
+        } else {
+            $return = call_user_func_array([$this, $method], $parameters);
+        }
 
         if ($this->orFailTest($return)) {
             throw new FailingReturnValue($method . '() returned a failing value');

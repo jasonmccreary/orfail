@@ -3,6 +3,7 @@
 use Tests\Mocks\BasicMock;
 use Tests\Mocks\OverrideMock;
 use Tests\Mocks\InheritanceMock;
+use Tests\Mocks\MagicMock;
 
 class OrFailTest extends \PHPUnit_Framework_TestCase
 {
@@ -82,6 +83,13 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
     public function testOrFailCallsInheritedMethod()
     {
         $mock = new InheritanceMock();
+
+        $this->assertTrue($mock->loopbackOrFail(true));
+    }
+
+    public function testOrFailCallsInheritedMagicMethod()
+    {
+        $mock = new MagicMock();
 
         $this->assertTrue($mock->loopbackOrFail(true));
     }
