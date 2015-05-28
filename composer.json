@@ -1,7 +1,6 @@
 {
     "name": "jasonmccreary/orfail",
-    "description": "The orFail Trait.",
-    "version": "1.0.0-dev",
+    "description": "PHP orFail Trait.",
     "license": "MIT",
     "authors": [
         {

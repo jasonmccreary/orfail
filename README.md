@@ -1,4 +1,4 @@
-# The OrFail Trait
+# PHP OrFail Trait
 
 OrFail is a simple [trait](http://php.net/manual/en/language.oop5.traits.php) which makes it easier to practice exceptional programming and write cleaner code.
 
