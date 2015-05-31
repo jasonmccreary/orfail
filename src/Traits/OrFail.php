@@ -16,7 +16,7 @@ trait OrFail
      * @throws OrException
      * @throws OrFailMethodNotAllowed
      */
-    public function __call($method, array $parameters)
+    public function __call($method, $parameters)
     {
         $method = $this->normalizeMethodName($method);
 
