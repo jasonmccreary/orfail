@@ -93,4 +93,11 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($mock->loopbackOrFail(true));
     }
+
+    public function testOrFailCallsAccessibleMethodNotMagicMethod()
+    {
+        $mock = new MagicMock();
+
+        $this->assertSame(1, $mock->accessibleMethodOrFail(1));
+    }
 }

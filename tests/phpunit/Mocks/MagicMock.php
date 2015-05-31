@@ -14,5 +14,9 @@ class MagicBase
 class MagicMock extends MagicBase
 {
     use OrFail;
+
+    public function accessibleMethod($value) {
+        return $value;
+    }
 }
 // @codingStandardsIgnoreEnd
