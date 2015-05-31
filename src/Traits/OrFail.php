@@ -18,7 +18,7 @@ trait OrFail
      */
     public function __call($method, $parameters)
     {
-        $method = $this->normalizeMethodName($method);
+        $method = $this->normalizeMethod($method);
 
         if (!$this->isMethodAllowed($method)) {
             throw new OrFailMethodNotAllowed($method . '() can not be called using OrFail');
@@ -39,17 +39,38 @@ trait OrFail
         return $return;
     }
 
+    /**
+     * Test if $value is failing.
+     *
+     * @param $value
+     *
+     * @return bool
+     */
     protected function orFailTest($value)
     {
         return is_null($value);
     }
 
+    /**
+     * Array of method names allowed to be
+     * called with OrFail suffix. Allows all
+     * method names by default (empty array).
+     *
+     * @return array
+     */
     protected function allowedOrFailMethods()
     {
         return [];
     }
 
-    private function normalizeMethodName($method)
+    /**
+     * Remove OrFail from $method
+     *
+     * @param $method
+     *
+     * @return string
+     */
+    private function normalizeMethod($method)
     {
         if (substr($method, -6) == 'OrFail') {
             return substr($method, 0, -6);
@@ -58,6 +79,14 @@ trait OrFail
         return $method;
     }
 
+    /**
+     * Test if $method is allowed to be called
+     * with OrFail suffix.
+     *
+     * @param $method
+     *
+     * @return bool
+     */
     private function isMethodAllowed($method)
     {
         $allowed_methods = $this->allowedOrFailMethods();
