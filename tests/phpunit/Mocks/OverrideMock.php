@@ -13,7 +13,7 @@ class OverrideMock
 
     protected function orFailTest($value)
     {
-        return empty($value);
+        return $value < 0;
     }
 
     public function loopback($value)

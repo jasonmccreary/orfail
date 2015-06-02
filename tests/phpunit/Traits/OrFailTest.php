@@ -7,22 +7,6 @@ use Tests\Mocks\MagicMock;
 
 class OrFailTest extends \PHPUnit_Framework_TestCase
 {
-    public function testOrFailTest()
-    {
-        $mock = $this->getMockForTrait('OrFail\Traits\OrFail');
-
-        $this->assertTrue($mock->orFailTest(null));
-        $this->assertFalse($mock->orFailTest(0));
-        $this->assertFalse($mock->orFailTest('value'));
-    }
-
-    public function testAllowedOrFailMethods()
-    {
-        $mock = $this->getMockForTrait('OrFail\Traits\OrFail');
-
-        $this->assertCount(0, $mock->allowedOrFailMethods());
-    }
-
     /**
      * @expectedException BadMethodCallException
      */
@@ -34,13 +18,14 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider falseyValuesProvider
      * @expectedException \OrFail\Exceptions\FailingReturnValue
      */
-    public function testThrowsFailingReturnValue()
+    public function testThrowsFailingReturnValue($value)
     {
         $mock = new BasicMock();
 
-        $mock->loopbackOrFail(null);
+        $mock->loopbackOrFail($value);
     }
 
     public function testAllowedOrFailMethodsOverride()
@@ -60,9 +45,6 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
         $mock->notAllowedOrFail(null);
     }
 
-    /**
-     *
-     */
     public function testOrFailTestOverride()
     {
         $mock = new OverrideMock();
@@ -77,7 +59,7 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
     {
         $mock = new OverrideMock();
 
-        $mock->loopbackOrFail(false);
+        $mock->loopbackOrFail(-1);
     }
 
     public function testOrFailCallsInheritedMethod()
@@ -99,5 +81,18 @@ class OrFailTest extends \PHPUnit_Framework_TestCase
         $mock = new MagicMock();
 
         $this->assertSame(1, $mock->accessibleMethodOrFail(1));
+    }
+
+    public function falseyValuesProvider()
+    {
+        return [
+            [''],
+            [0],
+            [null],
+            [[]],
+            [0.0],
+            ['0'],
+            [false]
+        ];
     }
 }

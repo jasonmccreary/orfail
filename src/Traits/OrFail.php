@@ -48,7 +48,7 @@ trait OrFail
      */
     protected function orFailTest($value)
     {
-        return is_null($value);
+        return empty($value);
     }
 
     /**
